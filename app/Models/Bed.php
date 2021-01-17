@@ -36,7 +36,7 @@ class Bed extends Model
     	return $this->belongsTo(Ground::class);
     }
 
-    public function plant(){
-    	return $this->hasOne(Plant::class);
+    public function plants(){
+    	return $this->hasMany(Plant::class);
     }
 }

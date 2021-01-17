@@ -13,11 +13,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Plant extends Model
 {
     use HasFactory,SoftDeletes;
+
+    const PLANT_STATUS_PLANTED = 'plantada';
+
     protected $dates = ['deleted_at'];
 	protected $fillable = [
     	'name',
-    	'bed_id',
-    	'seed_id',
+        'seed_id',
+        'bed_id',
     	'status',
     ];
 
@@ -25,7 +28,7 @@ class Plant extends Model
     	return $this->hasMany(Care::class);
     }
 
-    public function bed(){
+    public function beds(){
     	return $this->belongsTo(Bed::class);
     }
 

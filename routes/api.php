@@ -27,7 +27,7 @@ Route::resource('gardens.plants', 'Garden\GardenPlantController', ['only' => ['i
 Route::resource('gardens.seeds', 'Garden\GardenSeedController', ['only' => ['index'] ]);
 
 Route::resource('grounds', 'Ground\GroundController', ['only' => ['index','show']]);
-Route::resource('grounds.beds', 'Ground\GroundBedController', ['only' => ['index'] ]);
+Route::resource('grounds.beds', 'Ground\GroundBedController', ['except' => ['create', 'show', 'edit']]);
 Route::resource('grounds.cares', 'Ground\GroundCareController', ['only' => ['index'] ]);
 Route::resource('grounds.crops', 'Ground\GroundCropController', ['only' => ['index'] ]);
 Route::resource('grounds.garden', 'Ground\GroundGardenController', ['only' => ['index'] ]);
@@ -44,8 +44,9 @@ Route::resource('grounds.seeds', 'Ground\GroundSeedController', ['only' => ['ind
 Route::resource('beds', 'Bed\BedController', ['only' => ['index','show']]);
 Route::resource('beds.garden', 'Bed\BedGardenController', ['only' => ['index'] ]);
 Route::resource('beds.ground', 'Bed\BedGroundController', ['only' => ['index'] ]);
-Route::resource('beds.plant', 'Bed\BedPlantController', ['only' => ['index'] ]);
+Route::resource('beds.plants', 'Bed\BedPlantController', ['only' => ['index'] ]);
 Route::resource('beds.seed', 'Bed\BedSeedController', ['only' => ['index'] ]);
+Route::resource('beds.seed.plants', 'Bed\BedSeedPlantController', ['except' => ['create', 'show', 'edit']]);
 Route::resource('beds.cares', 'Bed\BedCareController', ['only' => ['index'] ]);
 Route::resource('beds.crop', 'Bed\BedCropController', ['only' => ['index'] ]);
 

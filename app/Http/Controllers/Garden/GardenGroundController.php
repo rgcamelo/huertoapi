@@ -60,7 +60,8 @@ class GardenGroundController extends ApiController
 
         $ground->fill($request->only([
             'name',
-            'type'
+            'type',
+            'garden_id'
         ]));
 
         if ($ground->isClean()) {

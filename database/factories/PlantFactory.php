@@ -23,10 +23,12 @@ class PlantFactory extends Factory
      */
     public function definition()
     {
+        $bed = Bed::all()->random();
+        $seed = Seed::all()->random();
         return [
-            'status' => 'HOla',
-            'bed_id' => Bed::all()->random()->id,
-            'seed_id' => Seed::all()->random()->id,
+            'name' => $seed->name,
+            'bed_id' => $bed->id,
+            'seed_id' => $seed->id,
         ];
     }
 }

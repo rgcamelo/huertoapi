@@ -14,9 +14,9 @@ class BedPlantController extends ApiController
      */
     public function index(Bed $bed)
     {
-        $plant = $bed->plant;
+        $plant = $bed->plants;
 
-        return $this->showOne($plant);
+        return $this->showAll($plant);
     }
 
 

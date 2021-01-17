@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Plant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,8 @@ class CreatePlantsTable extends Migration
     {
         Schema::create('plants', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
+            $table->string('name');
+            $table->string('status')->default(Plant::PLANT_STATUS_PLANTED);
             $table->timestamps();
             $table->softDeletes();
 

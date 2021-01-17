@@ -83,6 +83,7 @@ class GardenController extends ApiController
      */
     public function destroy(Garden $garden)
     {
+        $garden['status'] = Garden::GARDEN_NO_DISPONIBLE;
         $garden->delete();
 
         return $this->showOne($garden);
