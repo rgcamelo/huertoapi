@@ -21,7 +21,8 @@ class Care extends Model
 
 	protected $fillable = [
     	'plant_id',
-    	'type'
+        'type',
+        'description'
     ];
 
     public function plant(){
