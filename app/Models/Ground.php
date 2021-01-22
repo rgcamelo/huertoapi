@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Bed;
 use App\Models\Garden;
+use App\Transformers\GroundTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +18,8 @@ class Ground extends Model
     const TYPE_MODULE = 'module';
 
     protected $dates = ['deleted_at'];
+
+    public $transformer = GroundTransformer::class;
 
 	protected $fillable = [
     	'name',

@@ -17,7 +17,7 @@ class CreateBedsTable extends Migration
         Schema::create('beds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status')->default(Bed::BED_NO_DISPONIBLE);
+            $table->string('status')->default(Bed::BED_DISPONIBLE);
             $table->string('type');
             $table->timestamps();
             $table->softDeletes();

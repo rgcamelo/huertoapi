@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Plant;
 use App\Models\Ground;
+use App\Transformers\BedTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,6 +19,7 @@ class Bed extends Model
     const TYPE_TERRACE = 'terrace';
 
     protected $dates = ['deleted_at'];
+    public $transformer = BedTransformer::class;
 
 	protected $fillable = [
     	'name',

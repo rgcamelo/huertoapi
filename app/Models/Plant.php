@@ -6,6 +6,7 @@ use App\Models\Bed;
 use App\Models\Care;
 use App\Models\Crop;
 use App\Models\Seed;
+use App\Transformers\PlantTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +18,9 @@ class Plant extends Model
     const PLANT_STATUS_PLANTED = 'plantada';
 
     protected $dates = ['deleted_at'];
+
+    public $transformer = PlantTransformer::class;
+
 	protected $fillable = [
     	'name',
         'seed_id',
@@ -28,7 +32,7 @@ class Plant extends Model
     	return $this->hasMany(Care::class);
     }
 
-    public function beds(){
+    public function bed(){
     	return $this->belongsTo(Bed::class);
     }
 
