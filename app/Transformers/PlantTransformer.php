@@ -41,6 +41,37 @@ class PlantTransformer extends TransformerAbstract
             'created_at' => (string)$plant->created_at,
             'updated_at' => (string)$plant->updated_at,
             'deleted_at' => isset($plant->deleted_at) ? (string)$plant->deleted_at : null,
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('plants.show',$plant->id),
+                ],
+                [
+                    'rel' => 'plants.crops',
+                    'href' => route('plants.crop.index',$plant->id),
+                ],
+                [
+                    'rel' => 'plants.garden',
+                    'href' => route('plants.garden.index',$plant->id),
+                ],
+                [
+                    'rel' => 'plants.ground',
+                    'href' => route('plants.ground.index',$plant->id),
+                ],
+                [
+                    'rel' => 'plants.seed',
+                    'href' => route('plants.seed.index',$plant->id),
+                ],
+                [
+                    'rel' => 'plants.cares',
+                    'href' => route('plants.cares.index',$plant->id),
+                ],
+                [
+                    'rel' => 'plants.bed',
+                    'href' => route('plants.bed.index',$plant->id),
+                ],
+        ]
         ];
     }
 

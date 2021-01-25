@@ -15,7 +15,6 @@ class CarePlantController extends ApiController
     public function index(Care $care)
     {
         $plant = $care->plant;
-
         return $this->showOne($plant);
     }
 

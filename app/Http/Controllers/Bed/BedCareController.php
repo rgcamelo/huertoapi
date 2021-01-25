@@ -14,8 +14,7 @@ class BedCareController extends ApiController
      */
     public function index(Bed $bed)
     {
-        $cares = $bed->plant->cares;
-
+        $cares = $bed->plants()->with('cares')->get()->pluck('cares')->collapse();
         return $this->showAll($cares);
     }
 

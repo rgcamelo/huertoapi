@@ -39,7 +39,39 @@ class GardenTransformer extends TransformerAbstract
             'created_at' => (string)$garden->created_at,
             'updated_at' => (string)$garden->updated_at,
             'deleted_at' => isset($garden->deleted_at) ? (string)$garden->deleted_at : null,
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('gardens.show',$garden->id),
+                ],
+                [
+                    'rel' => 'garden.crops',
+                    'href' => route('gardens.crops.index',$garden->id),
+                ],
+                [
+                    'rel' => 'garden.ground',
+                    'href' => route('gardens.grounds.index',$garden->id),
+                ],
+                [
+                    'rel' => 'garden.plant',
+                    'href' => route('gardens.plants.index',$garden->id),
+                ],
+                [
+                    'rel' => 'garden.seed',
+                    'href' => route('gardens.seeds.index',$garden->id),
+                ],
+                [
+                    'rel' => 'garden.cares',
+                    'href' => route('gardens.cares.index',$garden->id),
+                ],
+                [
+                    'rel' => 'garden.bed',
+                    'href' => route('gardens.beds.index',$garden->id),
+                ],
+            ]
         ];
+
     }
 
     public static function originalAttributes($index){

@@ -16,8 +16,7 @@ class GroundCareController extends ApiController
      */
     public function index(Ground $ground)
     {
-        $cares = $ground->beds()->with('plant.cares')->get()->pluck('plant.cares')->collapse();
-
+        $cares = $ground->beds()->with('plants.cares')->get()->pluck('plants')->collapse()->pluck('cares')->collapse();
         return $this->showAll($cares);
     }
 }

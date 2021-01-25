@@ -41,6 +41,37 @@ class BedTransformer extends TransformerAbstract
             'created_at' => (string)$bed->created_at,
             'updated_at' => (string)$bed->updated_at,
             'deleted_at' => isset($bed->deleted_at) ? (string)$bed->deleted_at : null,
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('beds.show',$bed->id),
+                ],
+                [
+                    'rel' => 'bed.garden',
+                    'href' => route('beds.garden.index',$bed->id),
+                ],
+                [
+                    'rel' => 'bed.ground',
+                    'href' => route('beds.ground.index',$bed->id),
+                ],
+                [
+                    'rel' => 'bed.plants',
+                    'href' => route('beds.plants.index',$bed->id),
+                ],
+                [
+                    'rel' => 'bed.seeds',
+                    'href' => route('beds.seeds.index',$bed->id),
+                ],
+                [
+                    'rel' => 'bed.crops',
+                    'href' => route('beds.crops.index',$bed->id),
+                ],
+                [
+                    'rel' => 'bed.cares',
+                    'href' => route('beds.cares.index',$bed->id),
+                ],
+            ]
         ];
     }
 

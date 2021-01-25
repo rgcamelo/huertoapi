@@ -18,9 +18,8 @@ class PlantCropController extends ApiController
      */
     public function index(Plant $plant)
     {
-        $crop = $plant->crop;
-
-        return $this->showOne($crop);
+        $crop = $plant->crop()->get();
+        return $this->showAll($crop);
     }
 
     public function store(Request $request, Plant $plant){

@@ -34,19 +34,49 @@ class CareTransformer extends TransformerAbstract
     {
         return [
             'id' => (int)$care->id,
-            'name' => (string)$care->name,
             'type' => (string)$care->type,
             'plant' => (int)$care->plant_id,
             'created_at' => (string)$care->created_at,
             'updated_at' => (string)$care->updated_at,
             'deleted_at' => isset($care->deleted_at) ? (string)$care->deleted_at : null,
+
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('cares.show',$care->id),
+                ],
+                [
+                    'rel' => 'care.garden',
+                    'href' => route('cares.garden.index',$care->id),
+                ],
+                [
+                    'rel' => 'care.ground',
+                    'href' => route('cares.ground.index',$care->id),
+                ],
+                [
+                    'rel' => 'care.plant',
+                    'href' => route('cares.plant.index',$care->id),
+                ],
+                [
+                    'rel' => 'care.seed',
+                    'href' => route('cares.seed.index',$care->id),
+                ],
+                [
+                    'rel' => 'care.crop',
+                    'href' => route('cares.crop.index',$care->id),
+                ],
+                [
+                    'rel' => 'care.bed',
+                    'href' => route('cares.bed.index',$care->id),
+                ],
+            ]
         ];
     }
 
     public static function originalAttributes($index){
         $attributes = [
             'id' => 'id',
-            'name' => 'name',
             'type' => 'type',
             'plant' => 'plant_id',
             'created_at' => 'created_at',

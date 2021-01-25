@@ -16,7 +16,7 @@ class GardenCareController extends ApiController
      */
     public function index(Garden $garden)
     {
-        $cares = $garden->grounds()->with('beds.plant.cares')->get()->pluck('beds')->collapse()->pluck('plant.cares')->collapse();
+        $cares = $garden->grounds()->with('beds.plants.cares')->get()->pluck('beds')->collapse()->pluck('plants')->collapse()->pluck('cares')->collapse();
 
         return $this->showAll($cares);
     }

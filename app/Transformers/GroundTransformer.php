@@ -41,7 +41,38 @@ class GroundTransformer extends TransformerAbstract
             'created_at' => (string)$ground->created_at,
             'updated_at' => (string)$ground->updated_at,
             'deleted_at' => isset($ground->deleted_at) ? (string)$ground->deleted_at : null,
-        ];
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('grounds.show',$ground->id),
+                ],
+                [
+                    'rel' => 'grounds.crops',
+                    'href' => route('grounds.crops.index',$ground->id),
+                ],
+                [
+                    'rel' => 'grounds.ground',
+                    'href' => route('grounds.garden.index',$ground->id),
+                ],
+                [
+                    'rel' => 'grounds.plant',
+                    'href' => route('grounds.plants.index',$ground->id),
+                ],
+                [
+                    'rel' => 'grounds.seed',
+                    'href' => route('grounds.seeds.index',$ground->id),
+                ],
+                [
+                    'rel' => 'grounds.cares',
+                    'href' => route('grounds.cares.index',$ground->id),
+                ],
+                [
+                    'rel' => 'grounds.bed',
+                    'href' => route('grounds.beds.index',$ground->id),
+                ],
+        ]
+            ];
     }
 
     public static function originalAttributes($index){

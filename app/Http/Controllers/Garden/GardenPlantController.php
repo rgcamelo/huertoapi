@@ -16,8 +16,7 @@ class GardenPlantController extends ApiController
      */
     public function index(Garden $garden)
     {
-        $plants = $garden->grounds()->with('beds.plant')->get()->pluck('beds')->collapse()->pluck('plant');
-
+        $plants = $garden->grounds()->with('beds.plants')->get()->pluck('beds')->collapse()->pluck('plants')->collapse();
         return $this->showAll($plants);
     }
 

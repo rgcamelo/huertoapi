@@ -16,8 +16,7 @@ class GroundSeedController extends ApiController
      */
     public function index(Ground $ground)
     {
-        $seeds = $ground->beds()->with('plant.seed')->get()->pluck('plant.seed');
-
+        $seeds = $ground->beds()->with('plants.seed')->get()->pluck('plants')->collapse()->pluck('seed');
         return $this->showAll($seeds);
     }
 

@@ -39,6 +39,37 @@ class SeedTransformer extends TransformerAbstract
             'created_at' => (string)$seed->created_at,
             'updated_at' => (string)$seed->updated_at,
             'deleted_at' => isset($seed->deleted_at) ? (string)$seed->deleted_at : null,
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('seeds.show',$seed->id),
+                ],
+                [
+                    'rel' => 'seeds.crops',
+                    'href' => route('seeds.crops.index',$seed->id),
+                ],
+                [
+                    'rel' => 'seeds.gardens',
+                    'href' => route('seeds.gardens.index',$seed->id),
+                ],
+                [
+                    'rel' => 'seeds.grounds',
+                    'href' => route('seeds.grounds.index',$seed->id),
+                ],
+                [
+                    'rel' => 'seeds.plants',
+                    'href' => route('seeds.plants.index',$seed->id),
+                ],
+                [
+                    'rel' => 'seeds.cares',
+                    'href' => route('seeds.cares.index',$seed->id),
+                ],
+                [
+                    'rel' => 'seeds.beds',
+                    'href' => route('seeds.beds.index',$seed->id),
+                ],
+        ]
         ];
     }
 

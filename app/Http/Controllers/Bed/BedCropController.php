@@ -14,9 +14,8 @@ class BedCropController extends ApiController
      */
     public function index(Bed $bed)
     {
-        $crop = $bed->plant->crop;
-
-        return $this->showOne($crop);
+        $crops = $bed->plants()->with('crop')->get()->pluck('crop')->whereNotNull();
+        return $this->showAll($crops);
     }
 
 

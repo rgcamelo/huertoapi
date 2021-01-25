@@ -15,9 +15,8 @@ class BedSeedController extends ApiController
      */
     public function index(Bed $bed)
     {
-        $seed = $bed->plant->seed;
-
-        return $this->showOne($seed);
+        $seed = $bed->plants()->with('seed')->get()->pluck('seed');
+        return $this->showAll($seed);
     }
 
 
