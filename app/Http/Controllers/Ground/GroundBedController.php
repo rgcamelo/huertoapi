@@ -44,6 +44,20 @@ class GroundBedController extends ApiController
         $data['status'] = Bed::BED_DISPONIBLE;
         $data['ground_id'] = $ground->id;
 
+        if( $data['type'] == Bed::TYPE_BED){
+            $ground->number_bed ++;
+        }
+
+        if( $data['type'] == Bed::TYPE_FURROW){
+            $ground->number_furrow ++;
+        }
+
+        if( $data['type'] == Bed::TYPE_TERRACE){
+            $ground->number_terrace ++;
+        }
+
+        $ground->save();
+
         $bed = Bed::create($data);
 
         return $this->showOne($bed,201);

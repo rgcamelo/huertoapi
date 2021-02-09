@@ -25,6 +25,9 @@ class Ground extends Model
     	'name',
     	'type',
     	'status',
+        'number_bed',
+        'number_furrow',
+        'number_terrace',
     	'garden_id',
     ];
 

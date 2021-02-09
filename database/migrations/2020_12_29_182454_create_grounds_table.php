@@ -19,6 +19,9 @@ class CreateGroundsTable extends Migration
             $table->string('name');
             $table->string('status')->default(Ground::GROUND_DISPONIBLE);
             $table->string('type');
+            $table->integer('number_bed')->unsigned()->default(0);
+            $table->integer('number_furrow')->unsigned()->default(0);
+            $table->integer('number_terrace')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
 
