@@ -32,11 +32,13 @@ class PlantTransformer extends TransformerAbstract
      */
     public function transform(Plant $plant)
     {
+        //$seed= $plant->seed;
         return [
             'id' => (int)$plant->id,
             'name' => (string)$plant->name,
             'status' => (string)$plant->status,
             'seed' => (int)$plant->seed_id,
+            //'seed_name' => (string)$seed->name,
             'bed' => (int)$plant->bed_id,
             'created_at' => (string)$plant->created_at,
             'updated_at' => (string)$plant->updated_at,
