@@ -85,4 +85,17 @@ class CropTransformer extends TransformerAbstract
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
     }
+
+    public static function transformedAttributes($index){
+        $attributes = [
+            'id' => 'id',
+            'quantity' => 'quantity',
+            'plant_id' => 'plant',
+            'created_at' => 'created_at',
+            'updated_at' => 'updated_at',
+            'deleted_at' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
 }

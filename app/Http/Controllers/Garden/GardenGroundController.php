@@ -6,11 +6,18 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Garden;
 use App\Models\Ground;
+use App\Transformers\GroundTransformer;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class GardenGroundController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input:'.GroundTransformer::class)->only(['store','update']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +38,13 @@ class GardenGroundController extends ApiController
      */
     public function store(Request $request, Garden $garden)
     {
+
         $rules = [
             'name' => 'required',
             'type' => 'required|in:'.Ground::TYPE_MODULE.','.Ground::TYPE_SEEDBED,
+            'number_bed',
+            'number_furrow' ,
+            'number_terrace',
         ];
 
         $this->validate($request,$rules);

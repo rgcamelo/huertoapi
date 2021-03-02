@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Garden;
 
 use App\Http\Controllers\ApiController;
 use App\Models\Garden;
+use App\Transformers\GardenTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GardenController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input:'.GardenTransformer::class)->only(['store','update']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,12 +39,15 @@ class GardenController extends ApiController
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required'
+            'name' => 'required',
+            'image' => 'required|image'
         ];
 
         $this->validate($request,$rules);
 
-        $garden = Garden::create($request->all());
+        $data = $request->all();
+        $data['image'] = $request->image->store('');
+        $garden = Garden::create($data);
         return $this->showOne($garden,201);
     }
 
@@ -64,7 +75,13 @@ class GardenController extends ApiController
         $garden->fill($request->only([
             'name',
             'status',
+            'image',
         ]));
+
+        if ($request->hasFile('image')){
+            Storage::delete($garden->image);
+            $garden->image = $request->image->store('');
+        }
 
         if ($garden->isClean()) {
             return $this->errorResponse('Debe especificar al menor un valor diferente para actualizar',422);
@@ -84,6 +101,8 @@ class GardenController extends ApiController
     public function destroy(Garden $garden)
     {
         $garden['status'] = Garden::GARDEN_NO_DISPONIBLE;
+
+        Storage::delete($garden->image);
         $garden->delete();
 
         return $this->showOne($garden);

@@ -13,8 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
-
+    'default' => env('FILESYSTEM_DRIVER', 'images'),
     /*
     |--------------------------------------------------------------------------
     | Filesystem Disks
@@ -25,7 +24,6 @@ return [
     | been setup for each driver as an example of the required options.
     |
     | Supported Drivers: "local", "ftp", "sftp", "s3"
-    |
     */
 
     'disks' => [
@@ -39,6 +37,12 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'images' => [
+            'driver' => 'local',
+            'root' => public_path('img'),
             'visibility' => 'public',
         ],
 

@@ -36,6 +36,7 @@ class GardenTransformer extends TransformerAbstract
             'id' => (int)$garden->id,
             'name' => (string)$garden->name,
             'status' => (string)$garden->status,
+            'image' => (string)$garden->image,
             'created_at' => (string)$garden->created_at,
             'updated_at' => (string)$garden->updated_at,
             'deleted_at' => isset($garden->deleted_at) ? (string)$garden->deleted_at : null,
@@ -79,6 +80,21 @@ class GardenTransformer extends TransformerAbstract
             'id' => 'id',
             'name' => 'name',
             'status' => 'status',
+            'image' => 'image',
+            'created_at' => 'created_at',
+            'updated_at' => 'updated_at',
+            'deleted_at' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttributes($index){
+        $attributes = [
+            'id' => 'id',
+            'name' => 'name',
+            'status' => 'status',
+            'image' => 'image',
             'created_at' => 'created_at',
             'updated_at' => 'updated_at',
             'deleted_at' => 'deleted_at',

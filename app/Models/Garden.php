@@ -21,6 +21,7 @@ class Garden extends Model
     protected $fillable = [
     	'name',
     	'status',
+        'image',
     ];
 
 

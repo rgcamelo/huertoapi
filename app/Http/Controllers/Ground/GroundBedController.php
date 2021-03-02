@@ -6,11 +6,18 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Bed;
 use App\Models\Ground;
+use App\Transformers\BedTransformer;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class GroundBedController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input:'.BedTransformer::class)->only(['store','update']);
+    }
     /**
      * Display a listing of the resource.
      *

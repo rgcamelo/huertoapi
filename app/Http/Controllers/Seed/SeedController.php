@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Seed;
 
 use App\Http\Controllers\ApiController;
 use App\Models\Seed;
+use App\Transformers\SeedTransformer;
 use Illuminate\Http\Request;
 
 class SeedController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input:'.SeedTransformer::class)->only(['store','update']);
+    }
     /**
      * Display a listing of the resource.
      *

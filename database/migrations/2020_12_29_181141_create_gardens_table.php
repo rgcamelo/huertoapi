@@ -18,6 +18,7 @@ class CreateGardensTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default(Garden::GARDEN_DISPONIBLE);
+            $table->string('image');
             $table->timestamps();
             $table->softDeletes();
         });

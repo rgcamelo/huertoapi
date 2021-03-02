@@ -6,11 +6,18 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Care;
 use App\Models\Plant;
+use App\Transformers\CareTransformer;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PlantCareController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input:'.CareTransformer::class)->only(['store','update']);
+    }
     /**
      * Display a listing of the resource.
      *

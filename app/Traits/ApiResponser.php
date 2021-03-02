@@ -106,7 +106,7 @@ trait ApiResponser{
 
         $fullUrl = "{$url}?{$queryString}";
 
-        return Cache::remember($url, 15, function () use($data) {
+        return Cache::remember($fullUrl,1, function () use($data) {
             return $data;
         });
     }
