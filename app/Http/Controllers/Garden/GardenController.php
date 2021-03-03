@@ -75,7 +75,6 @@ class GardenController extends ApiController
         $garden->fill($request->only([
             'name',
             'status',
-            'image',
         ]));
 
         if ($request->hasFile('image')){
