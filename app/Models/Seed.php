@@ -18,7 +18,8 @@ class Seed extends Model
 
 	protected $fillable = [
         'name',
-        'status'
+        'status',
+        'image'
     ];
     use HasFactory,SoftDeletes;
 

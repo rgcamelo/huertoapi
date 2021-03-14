@@ -17,7 +17,8 @@ class CreateSeedsTable extends Migration
         Schema::create('seeds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status')->default(Seed::SEED_NO_DISPONIBLE);
+            $table->string('status')->default(Seed::SEED_DISPONIBLE);
+            $table->string('image');
             $table->timestamps();
             $table->softDeletes();
         });
