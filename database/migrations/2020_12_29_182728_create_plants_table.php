@@ -18,6 +18,7 @@ class CreatePlantsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default(Plant::PLANT_STATUS_PLANTED);
+            $table->integer('quantity')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 

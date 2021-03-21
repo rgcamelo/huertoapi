@@ -33,7 +33,8 @@ class PlantCareController extends ApiController
     public function store(Request $request, Plant $plant){
 
         $rules = [
-            'type' => 'required|in:'.Care::TYPE_WATER.','.Care::TYPE_EYE.','.Care::TYPE_MANURE.','.Care::TYPE_PLAGUE
+            'type' => 'required|in:'.Care::TYPE_WATER.','.Care::TYPE_EYE.','.Care::TYPE_MANURE.','.Care::TYPE_PLAGUE,
+            'description' => 'required'
         ];
 
         $this->validate($request,$rules);

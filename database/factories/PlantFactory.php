@@ -29,6 +29,7 @@ class PlantFactory extends Factory
             'name' => $seed->name,
             'bed_id' => $bed->id,
             'seed_id' => $seed->id,
+            'quantity' => $this->faker->numberBetween(0,15),
         ];
     }
 }

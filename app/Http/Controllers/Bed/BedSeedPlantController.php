@@ -49,20 +49,24 @@ class BedSeedPlantController extends ApiController
             return $this->errorResponse('Semilla no disponible',409);
         }
 
+        $rules =[
+            'quantity' => 'required|integer|min:1'
+        ];
+
+        $this->validate($request,$rules);
+
         return DB::transaction(function () use ($request,$bed,$seed) {
+            // if ($bed->type != Bed::TYPE_BED) {
+            //     $bed->status = Bed::BED_NO_DISPONIBLE;
+            //     $bed->save();
+            // }
 
+            $data = $request->all();
+            $data['name'] = $seed->name;
+            $data['bed_id'] = $bed->id;
+            $data['seed_id'] = $seed->id;
 
-            if ($bed->type != Bed::TYPE_BED) {
-                $bed->status = Bed::BED_NO_DISPONIBLE;
-                $bed->save();
-            }
-
-
-            $plant = Plant::create([
-                'name' => $seed->name,
-                'bed_id' => $bed->id,
-                'seed_id' => $seed->id,
-            ]);
+            $plant = Plant::create($data);
 
             return $this->showOne($plant,201);
         });

@@ -9,6 +9,7 @@ use App\Models\Ground;
 use App\Transformers\BedTransformer;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Support\Facades\DB;
 
 class GroundBedController extends ApiController
 {
@@ -46,28 +47,35 @@ class GroundBedController extends ApiController
         }
 
         $this->validate($request,$rules);
-        $data = $request->all();
 
-        $data['status'] = Bed::BED_DISPONIBLE;
-        $data['ground_id'] = $ground->id;
+        return DB::transaction(function () use($request,$ground) {
 
-        if( $data['type'] == Bed::TYPE_BED){
-            $ground->number_bed ++;
-        }
+            $data = $request->all();
 
-        if( $data['type'] == Bed::TYPE_FURROW){
-            $ground->number_furrow ++;
-        }
+            $data['status'] = Bed::BED_DISPONIBLE;
+            $data['ground_id'] = $ground->id;
 
-        if( $data['type'] == Bed::TYPE_TERRACE){
-            $ground->number_terrace ++;
-        }
+            $bed = Bed::create($data);
 
-        $ground->save();
+            return $this->showOne($bed,201);
+        });
 
-        $bed = Bed::create($data);
 
-        return $this->showOne($bed,201);
+        // if( $data['type'] == Bed::TYPE_BED){
+        //     $ground->number_bed ++;
+        // }
+
+        // if( $data['type'] == Bed::TYPE_FURROW){
+        //     $ground->number_furrow ++;
+        // }
+
+        // if( $data['type'] == Bed::TYPE_TERRACE){
+        //     $ground->number_terrace ++;
+        // }
+
+        // $ground->save();
+
+
     }
 
     public function update(Request $request, Ground $ground, Bed $bed)

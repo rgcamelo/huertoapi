@@ -33,13 +33,21 @@ class PlantTransformer extends TransformerAbstract
     public function transform(Plant $plant)
     {
         $seed= $plant->seed;
+        $bed = $plant->bed;
+        $ground = $bed->ground;
+        $garden = $ground->garden;
+
         return [
             'id' => (int)$plant->id,
             'name' => (string)$plant->name,
             'status' => (string)$plant->status,
+            'quantity' => (int)$plant->quantity,
             'seed' => (int)$plant->seed_id,
             'seed_name' => (string)$seed->name,
             'bed' => (int)$plant->bed_id,
+            'bed_name' => (string)$bed->name,
+            'ground_name' => (string)$ground->name,
+            'garden_name' => (string)$garden->name,
             'created_at' => (string)$plant->created_at,
             'updated_at' => (string)$plant->updated_at,
             'deleted_at' => isset($plant->deleted_at) ? (string)$plant->deleted_at : null,
@@ -82,9 +90,13 @@ class PlantTransformer extends TransformerAbstract
             'id' => 'id',
             'name' => 'name',
             'status' => 'status',
+            'quantity' => 'quantity',
             'seed' => 'seed_id',
             'seed_name' => 'seed_name',
             'bed' => 'bed_id',
+            'bed_name' => 'bed_name',
+            'ground_name' => 'ground_name',
+            'garden_name' => 'garden_name',
             'created_at' => 'created_at',
             'updated_at' => 'updated_at',
             'deleted_at' => 'deleted_at',
@@ -98,9 +110,13 @@ class PlantTransformer extends TransformerAbstract
             'id' => 'id',
             'name' => 'name',
             'status' => 'status',
+            'quantity' => 'quantity',
             'seed_id' => 'seed',
             'seed_name' => 'seed_name',
             'bed_id' => 'bed',
+            'bed_name' => 'bed_name',
+            'ground_name' => 'ground_name',
+            'garden_name' => 'garden_name',
             'created_at' => 'created_at',
             'updated_at' => 'updated_at',
             'deleted_at' => 'deleted_at',

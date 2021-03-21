@@ -17,7 +17,7 @@ class Care extends Model
     public $transformer = CareTransformer::class;
 
     const TYPE_WATER = 'water';
-    const TYPE_MANURE = 'manuere';
+    const TYPE_MANURE = 'manure';
     const TYPE_PLAGUE = 'plague';
     const TYPE_EYE = 'eye';
 

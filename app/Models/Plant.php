@@ -26,6 +26,7 @@ class Plant extends Model
         'seed_id',
         'bed_id',
     	'status',
+        'quantity'
     ];
 
     public function cares(){
