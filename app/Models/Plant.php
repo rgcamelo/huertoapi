@@ -16,6 +16,7 @@ class Plant extends Model
     use HasFactory,SoftDeletes;
 
     const PLANT_STATUS_PLANTED = 'plantada';
+    const PLANT_STATUS_WATER = 'riego';
 
     protected $dates = ['deleted_at'];
 
@@ -42,7 +43,7 @@ class Plant extends Model
     }
 
     public function crop(){
-    	return $this->hasOne(Crop::class);
+    	return $this->hasOne(Crop::class); //Revisar esto
     }
 
 }

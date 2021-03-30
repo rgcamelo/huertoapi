@@ -63,6 +63,10 @@ class GardenGroundController extends ApiController
     {
         $rules = [
             'type' => 'in:'.Ground::TYPE_MODULE.','.Ground::TYPE_SEEDBED,
+            'status' => 'in:'.Ground::GROUND_NO_DISPONIBLE.','.Ground::GROUND_DISPONIBLE.','.Ground::GROUND_VACIO.','.Ground::GROUND_DESPLANTE.','.Ground::GROUND_RIEGO,
+            'number_bed' => 'integer|min:0',
+            'number_furrow' => 'integer|min:0',
+            'number_terrace' => 'integer|min:0',
         ];
 
         $this->validate($request,$rules);
@@ -72,7 +76,11 @@ class GardenGroundController extends ApiController
         $ground->fill($request->only([
             'name',
             'type',
-            'garden_id'
+            'status',
+            'garden_id',
+            'number_bed',
+            'number_furrow',
+            'number_terrace',
         ]));
 
         if ($ground->isClean()) {

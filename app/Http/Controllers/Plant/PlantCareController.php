@@ -34,7 +34,7 @@ class PlantCareController extends ApiController
 
         $rules = [
             'type' => 'required|in:'.Care::TYPE_WATER.','.Care::TYPE_EYE.','.Care::TYPE_MANURE.','.Care::TYPE_PLAGUE,
-            'description' => 'required'
+            'description' => 'required|max:500'
         ];
 
         $this->validate($request,$rules);

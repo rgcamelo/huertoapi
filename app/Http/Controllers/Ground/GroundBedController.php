@@ -80,8 +80,11 @@ class GroundBedController extends ApiController
 
     public function update(Request $request, Ground $ground, Bed $bed)
     {
+
         $rules = [
-            'type' => 'required|in:'.Bed::TYPE_BED.','.Bed::TYPE_FURROW.','.Bed::TYPE_TERRACE,
+            'name',
+            'type' => 'in:'.Bed::TYPE_BED.','.Bed::TYPE_FURROW.','.Bed::TYPE_TERRACE,
+            'status' => 'in:'.Bed::BED_VOID.','.Bed::BED_DISPONIBLE.','.Bed::BED_NO_DISPONIBLE.','.Bed::BED_WATER,
         ];
 
         $this->validate($request,$rules);
@@ -90,7 +93,8 @@ class GroundBedController extends ApiController
 
         $bed->fill($request->only([
             'name',
-            'type'
+            'type',
+            'status',
         ]));
 
         if ($bed->isClean()) {
@@ -104,11 +108,11 @@ class GroundBedController extends ApiController
 
     public function destroy(Ground $ground, Bed $bed)
     {
-        $this->verifiedGround($ground,$bed);
-
-        $bed->delete();
-
-        return $this->showOne($bed);
+        return DB::transaction(function () use($ground,$bed) {
+            $this->verifiedGround($ground,$bed);
+            $bed->delete();
+            return $this->showOne($bed);
+        });
     }
 
 

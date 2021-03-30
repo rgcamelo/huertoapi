@@ -38,6 +38,7 @@ class GardenController extends ApiController
      */
     public function store(Request $request)
     {
+        dd($request);
         $rules = [
             'name' => 'required',
             'image' => 'required|image'

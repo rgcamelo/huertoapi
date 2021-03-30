@@ -13,7 +13,9 @@ class Bed extends Model
 {
 
 	const BED_DISPONIBLE = 'disponible';
+    const BED_VOID = 'vacio';
     const BED_NO_DISPONIBLE = 'no disponible';
+    const BED_WATER = 'riego';
     const TYPE_BED = 'bed';
     const TYPE_FURROW = 'furrow';
     const TYPE_TERRACE = 'terrace';
@@ -41,4 +43,6 @@ class Bed extends Model
     public function plants(){
     	return $this->hasMany(Plant::class);
     }
+
+
 }

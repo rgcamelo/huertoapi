@@ -18,7 +18,7 @@ class PlantObserver
         $data = [
             'plant_id' => $plant->id,
             'type' => 'Plantada',
-            'description' => 'Dia de Plantada'
+            'description' => 'Dia de Plantacion'
         ];
 
         $care = Care::create($data);
@@ -32,7 +32,17 @@ class PlantObserver
      */
     public function updated(Plant $plant)
     {
+        if ($plant->status == 'riego') {
+            $data = [
+                'plant_id' => $plant->id,
+                'type' => Care::TYPE_WATER,
+                'description' => 'Riego de Zona'
+            ];
 
+            $care = Care::create($data);
+            $plant->status= 'disponible';
+            $plant->save();
+        }
     }
 
     /**

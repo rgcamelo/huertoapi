@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Bed;
+use App\Models\Ground;
+use App\Models\Plant;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\BedObserver;
+use App\Observers\GroundObserver;
+use App\Observers\PlantObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +31,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        Bed::observe(BedObserver::class);
+        Ground::observe(GroundObserver::class);
+        Plant::observe(PlantObserver::class);
     }
 }
