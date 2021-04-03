@@ -114,7 +114,7 @@ class BedSeedPlantController extends ApiController
         }
 
         $rules = [
-            'status' => 'in:'.Plant::PLANT_STATUS_PLANTED.','.Plant::PLANT_STATUS_WATER,
+            'status' => 'in:'.Plant::PLANT_STATUS_PLANTED.','.Plant::PLANT_STATUS_WATER.','.Plant::PLANT_STATUS_DESPLANTED,
         ];
 
         $this->validate($request,$rules);

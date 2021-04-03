@@ -20,6 +20,10 @@ class Care extends Model
     const TYPE_MANURE = 'manure';
     const TYPE_PLAGUE = 'plague';
     const TYPE_EYE = 'eye';
+    const TYPE_PRUNE = 'prune';
+    const TYPE_CROP = 'crop';
+    const TYPE_PLANTED = 'planted';
+    const TYPE_TRANSPLANTED = 'transplanted';
 
 
 	protected $fillable = [

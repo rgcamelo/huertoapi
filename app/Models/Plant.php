@@ -16,6 +16,7 @@ class Plant extends Model
     use HasFactory,SoftDeletes;
 
     const PLANT_STATUS_PLANTED = 'plantada';
+    const PLANT_STATUS_DESPLANTED = 'desplantada';
     const PLANT_STATUS_WATER = 'riego';
 
     protected $dates = ['deleted_at'];

@@ -17,7 +17,7 @@ class PlantObserver
     {
         $data = [
             'plant_id' => $plant->id,
-            'type' => 'Plantada',
+            'type' => 'planted',
             'description' => 'Dia de Plantacion'
         ];
 
@@ -42,6 +42,10 @@ class PlantObserver
             $care = Care::create($data);
             $plant->status= 'disponible';
             $plant->save();
+        }
+
+        if ($plant->status == 'desplantada') {
+            $plant->delete();
         }
     }
 
