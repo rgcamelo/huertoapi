@@ -16,7 +16,7 @@ class GroundCropController extends ApiController
      */
     public function index(Ground $ground)
     {
-        $crops = $ground->beds()->with('plants.crop')->get()->pluck('plants')->collapse()->pluck('crop')->whereNotNull()->values();
+        $crops = $ground->beds()->with('plants.crops')->get()->pluck('plants')->collapse()->pluck('crops')->collapse();
         return $this->showAll($crops);
     }
 

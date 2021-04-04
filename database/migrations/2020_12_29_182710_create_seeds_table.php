@@ -18,7 +18,7 @@ class CreateSeedsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default(Seed::SEED_DISPONIBLE);
-            $table->string('image');
+            $table->string('image')->default('');
             $table->timestamps();
             $table->softDeletes();
         });

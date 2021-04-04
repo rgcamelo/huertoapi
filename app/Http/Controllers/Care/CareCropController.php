@@ -16,7 +16,7 @@ class CareCropController extends ApiController
      */
     public function index(Care $care)
     {
-        $crop = $care->plant()->with('crop')->get()->pluck('crop')->whereNotNull();
+        $crop = $care->plant()->with('crops')->get()->pluck('crops')->whereNotNull();
         return $this->showAll($crop);
     }
 

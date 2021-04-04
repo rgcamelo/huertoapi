@@ -43,8 +43,8 @@ class Plant extends Model
     	return $this->belongsTo(Seed::class);
     }
 
-    public function crop(){
-    	return $this->hasOne(Crop::class); //Revisar esto
+    public function crops(){
+    	return $this->hasMany(Crop::class);
     }
 
 }

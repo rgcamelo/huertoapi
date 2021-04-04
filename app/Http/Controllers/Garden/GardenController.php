@@ -38,16 +38,19 @@ class GardenController extends ApiController
      */
     public function store(Request $request)
     {
-        dd($request);
         $rules = [
             'name' => 'required',
-            'image' => 'required|image'
+            'image' => 'image'
         ];
 
         $this->validate($request,$rules);
 
         $data = $request->all();
-        $data['image'] = $request->image->store('');
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->image->store('');
+        }
+
         $garden = Garden::create($data);
         return $this->showOne($garden,201);
     }

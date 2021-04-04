@@ -38,12 +38,16 @@ class SeedController extends ApiController
     {
         $rules = [
             'name' => 'required',
-            'image' => 'required|image'
+            'image' => 'image'
         ];
 
         $this->validate($request,$rules);
         $data = $request->all();
-        $data['image'] = $request->image->store('');
+
+        if (!empty($data['image'])) {
+            $data['image'] = $request->image->store('');
+        }
+
         $seed = Seed::create($data);
         return $this->showOne($seed,201);
     }

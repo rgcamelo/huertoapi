@@ -16,7 +16,7 @@ class PlantCropController extends ApiController
     {
         parent::__construct();
 
-        $this->middleware('transform.input:'.PlantTransformer::class)->only(['store','update']);
+        $this->middleware('transform.input:'.CropTransformer::class)->only(['store','update']);
     }
     /**
      * Display a listing of the resource.
@@ -25,8 +25,8 @@ class PlantCropController extends ApiController
      */
     public function index(Plant $plant)
     {
-        $crop = $plant->crop()->get();
-        return $this->showAll($crop);
+        $crops = $plant->crops()->get();
+        return $this->showAll($crops);
     }
 
     public function store(Request $request, Plant $plant){
