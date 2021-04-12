@@ -33,15 +33,16 @@ class PlantObserver
     public function updated(Plant $plant)
     {
         if ($plant->status == 'riego') {
+            $p = Plant::find($plant->id);
+            $p->status = Plant::PLANT_STATUS_DISPONIBLE;
+            $p->save();
+
             $data = [
                 'plant_id' => $plant->id,
                 'type' => Care::TYPE_WATER,
                 'description' => 'Riego de Zona'
             ];
-
             $care = Care::create($data);
-            $plant->status= 'disponible';
-            $plant->save();
         }
 
         if ($plant->status == 'desplantada') {

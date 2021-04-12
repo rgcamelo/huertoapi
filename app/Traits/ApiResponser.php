@@ -23,8 +23,9 @@ trait ApiResponser{
         if ($collection->isEmpty()) {
             return $this->successResponse(['data' => $collection], $code);
         }
-        $transformer = $collection->first()->transformer;
 
+
+        $transformer = $collection->first()->transformer;
         $collection = $this->filterData($collection,$transformer);
         $collection = $this->sortData($collection, $transformer);
         $collection = $this->paginate($collection);
@@ -106,7 +107,7 @@ trait ApiResponser{
 
         $fullUrl = "{$url}?{$queryString}";
 
-        return Cache::remember($fullUrl,1, function () use($data) {
+        return Cache::remember($fullUrl,0.1, function () use($data) {
             return $data;
         });
     }

@@ -6,7 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Crop;
 use App\Models\Plant;
-use App\Transformers\PlantTransformer;
+use App\Transformers\CropTransformer;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

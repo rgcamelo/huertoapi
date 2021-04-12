@@ -26,28 +26,36 @@ class GroundObserver
     public function updated(Ground $ground)
     {
         if ($ground->status == 'vacio') {
+            $g = Ground::find($ground->id);
+            $g->status = Ground::GROUND_DISPONIBLE;
+            $g->save();
+
             $ground->beds()->delete();
-            $ground->status = Ground::GROUND_DISPONIBLE;
-            $ground->save();
+
         }
 
         if ($ground->status == 'desplante') {
+            $g = Ground::find($ground->id);
+            $g->status = Ground::GROUND_DISPONIBLE;
+            $g->save();
 
             $ground->beds->each( function($bed){
                 $bed->status = 'vacio';
                 $bed->save();
             });
-            $ground->status = Ground::GROUND_DISPONIBLE;
-            $ground->save();
+
         }
 
         if ($ground->status == 'riego') {
+            $g = Ground::find($ground->id);
+            $g->status = Ground::GROUND_DISPONIBLE;
+            $g->save();
+
             $ground->beds->each( function($bed){
                 $bed->status = 'riego';
                 $bed->save();
             });
-            $ground->status = Ground::GROUND_DISPONIBLE;
-            $ground->save();
+
         }
 
 

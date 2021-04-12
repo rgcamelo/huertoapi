@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Bed;
-use App\Models\Ground;
 use Illuminate\Support\Facades\DB;
 
 class BedObserver
@@ -28,18 +27,23 @@ class BedObserver
     public function updated(Bed $bed)
     {
         if ($bed->status == 'vacio') {
+            $b = Bed::find($bed->id);
+            $b->status = Bed::BED_DISPONIBLE;
+            $b->save();
+
             $bed->plants()->delete();
-            $bed->status = 'disponible';
-            $bed->save();
+
         }
 
         if ($bed->status == 'riego') {
+            $b = Bed::find($bed->id);
+            $b->status = Bed::BED_DISPONIBLE;
+            $b->save();
+
             $bed->plants->each( function($plant){
                 $plant->status = 'riego';
                 $plant->save();
             });
-            $bed->status = Bed::BED_DISPONIBLE;
-            $bed->save();
         }
     }
 
