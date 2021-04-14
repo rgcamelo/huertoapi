@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         Garden::factory(2)->create();
         Ground::factory(10)->create();
         Bed::factory(150)->create();
-        Seed::factory(30)->create();
+        Seed::factory(50)->create();
         Plant::factory(150)->create();
         Care::factory(200)->create();
         Crop::factory(50)->create();
