@@ -17,6 +17,7 @@ class SeedCropController extends ApiController
     public function index(Seed $seed)
     {
         $crops = $seed->plants()->whereHas('crops')->with('crops')->get()->pluck('crops')->collapse();
+        $crops = $crops->reverse();
 
         return $this->showAll($crops);
     }
