@@ -24,7 +24,7 @@ class GardenController extends ApiController
     public function index()
     {
         $gardens = Garden::all();
-
+        dd(phpinfo());
         return $this->showAll($gardens);
     }
 
