@@ -55,7 +55,7 @@ Route::resource('seeds.gardens', 'Seed\SeedGardenController', ['only' => ['index
 Route::resource('seeds.grounds', 'Seed\SeedGroundController', ['only' => ['index'] ]);
 Route::resource('seeds.plants', 'Seed\SeedPlantController', ['only' => ['index'] ]);
 
-Route::resource('plants', 'Plant\PLantController', ['only' => ['index','show']]);
+Route::resource('plants', 'Plant\PlantController', ['only' => ['index','show']]);
 Route::resource('plants.bed', 'Plant\PlantBedController', ['only' => ['index'] ]);
 Route::resource('plants.cares', 'Plant\PlantCareController', ['except' => ['create', 'show', 'edit']]);
 Route::resource('plants.crop', 'Plant\PlantCropController', ['except' => ['create', 'show', 'edit']]);
