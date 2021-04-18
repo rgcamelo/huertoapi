@@ -47,13 +47,16 @@ Route::resource('beds.seed.plants', 'Bed\BedSeedPlantController', ['except' => [
 Route::resource('beds.cares', 'Bed\BedCareController', ['only' => ['index'] ]);
 Route::resource('beds.crops', 'Bed\BedCropController', ['only' => ['index'] ]);
 
-Route::resource('seeds', 'Seed\SeedController', ['except' => ['create','edit']]);
-Route::resource('seeds.beds', 'Seed\SeedBedController', ['only' => ['index'] ]);
-Route::resource('seeds.cares', 'Seed\SeedCareController', ['only' => ['index'] ]);
-Route::resource('seeds.crops', 'Seed\SeedCropController', ['only' => ['index'] ]);
-Route::resource('seeds.gardens', 'Seed\SeedGardenController', ['only' => ['index'] ]);
-Route::resource('seeds.grounds', 'Seed\SeedGroundController', ['only' => ['index'] ]);
-Route::resource('seeds.plants', 'Seed\SeedPlantController', ['only' => ['index'] ]);
+Route::middleware(['cors'])->group(function () {
+    Route::resource('seeds', 'Seed\SeedController', ['except' => ['create','edit']]);
+    Route::resource('seeds.beds', 'Seed\SeedBedController', ['only' => ['index'] ]);
+    Route::resource('seeds.cares', 'Seed\SeedCareController', ['only' => ['index'] ]);
+    Route::resource('seeds.crops', 'Seed\SeedCropController', ['only' => ['index'] ]);
+    Route::resource('seeds.gardens', 'Seed\SeedGardenController', ['only' => ['index'] ]);
+    Route::resource('seeds.grounds', 'Seed\SeedGroundController', ['only' => ['index'] ]);
+    Route::resource('seeds.plants', 'Seed\SeedPlantController', ['only' => ['index'] ]);
+});
+
 
 Route::resource('plants', 'Plant\PlantController', ['only' => ['index','show']]);
 Route::resource('plants.bed', 'Plant\PlantBedController', ['only' => ['index'] ]);
