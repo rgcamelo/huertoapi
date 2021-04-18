@@ -24,7 +24,7 @@ class SeedController extends ApiController
     public function index()
     {
         $seeds = Seed::all();
-
+        $seeds = $seeds->sortBy('name');
         return $this->showAll($seeds);
     }
 
