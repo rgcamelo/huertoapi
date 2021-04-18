@@ -18,13 +18,17 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::resource('gardens', 'Garden\GardenController', ['except' => ['create','edit']]);
-Route::resource('gardens.beds', 'Garden\GardenBedController', ['only' => ['index'] ]);
-Route::resource('gardens.cares', 'Garden\GardenCareController', ['only' => ['index'] ]);
-Route::resource('gardens.crops', 'Garden\GardenCropController', ['only' => ['index'] ]);
-Route::resource('gardens.grounds', 'Garden\GardenGroundController', ['except' => ['create', 'show', 'edit']]);
-Route::resource('gardens.plants', 'Garden\GardenPlantController', ['only' => ['index'] ]);
-Route::resource('gardens.seeds', 'Garden\GardenSeedController', ['only' => ['index'] ]);
+Route::middleware(['cors'])->group(function () {
+    Route::resource('gardens', 'Garden\GardenController', ['except' => ['create','edit']]);
+    Route::resource('gardens.beds', 'Garden\GardenBedController', ['only' => ['index'] ]);
+    Route::resource('gardens.cares', 'Garden\GardenCareController', ['only' => ['index'] ]);
+    Route::resource('gardens.crops', 'Garden\GardenCropController', ['only' => ['index'] ]);
+    Route::resource('gardens.grounds', 'Garden\GardenGroundController', ['except' => ['create', 'show', 'edit']]);
+    Route::resource('gardens.plants', 'Garden\GardenPlantController', ['only' => ['index'] ]);
+    Route::resource('gardens.seeds', 'Garden\GardenSeedController', ['only' => ['index'] ]);
+});
+
+
 
 Route::resource('grounds', 'Ground\GroundController', ['only' => ['index','show']]);
 Route::resource('grounds.beds', 'Ground\GroundBedController', ['except' => ['create', 'show', 'edit']]);
