@@ -25,6 +25,7 @@ class Bed extends Model
 
 	protected $fillable = [
     	'name',
+        'number',
     	'type',
     	'status',
     	'ground_id'

@@ -34,6 +34,7 @@ class BedTransformer extends TransformerAbstract
     {
         return [
             'id' => (int)$bed->id,
+            'number' => (int)$bed->number,
             'name' => (string)$bed->name,
             'status' => (string)$bed->status,
             'type' => (string)$bed->type,
@@ -79,6 +80,7 @@ class BedTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'id',
             'name' => 'name',
+            'number' => 'number',
             'status' => 'status',
             'type' => 'type',
             'zona' => 'ground_id',
@@ -94,6 +96,7 @@ class BedTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'id',
             'name' => 'name',
+            'number' => 'number',
             'status' => 'status',
             'type' => 'type',
             'ground_id' => 'zona',

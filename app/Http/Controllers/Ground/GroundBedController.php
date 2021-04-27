@@ -27,6 +27,7 @@ class GroundBedController extends ApiController
     public function index(Ground $ground)
     {
         $beds = $ground->beds;
+        $beds = $beds->sortBy('number');
 
         return $this->showAll($beds);
     }
@@ -35,6 +36,7 @@ class GroundBedController extends ApiController
     {
         $rules = [
             'name' => 'required',
+            'number' => 'required|integer',
             'type' => 'required|in:'.Bed::TYPE_BED.','.Bed::TYPE_FURROW.','.Bed::TYPE_TERRACE,
         ];
 

@@ -17,6 +17,7 @@ class CreateBedsTable extends Migration
         Schema::create('beds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('number')->unsigned();
             $table->string('status')->default(Bed::BED_DISPONIBLE);
             $table->string('type');
             $table->timestamps();
