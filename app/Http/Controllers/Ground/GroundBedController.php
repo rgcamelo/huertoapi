@@ -37,6 +37,8 @@ class GroundBedController extends ApiController
         $rules = [
             'name' => 'required',
             'number' => 'required|integer',
+            'x' => 'required|integer',
+            'y' => 'required|integer',
             'type' => 'required|in:'.Bed::TYPE_BED.','.Bed::TYPE_FURROW.','.Bed::TYPE_TERRACE,
         ];
 
