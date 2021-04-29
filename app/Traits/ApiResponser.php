@@ -49,7 +49,10 @@ trait ApiResponser{
             $attribute = $transformer::originalAttributes($query);
 
             if (isset($attribute, $value)) {
-                $collection = $collection->where($attribute,$value);
+                //$collection = $collection->where($attribute,$value);
+                $collection = $collection->filter(function($item) use ($value) {
+                    return stripos($item['name'],$value) !== false;
+                });
             }
         }
 
@@ -58,6 +61,16 @@ trait ApiResponser{
 
     protected function sortData(Collection $collection, $transformer){
         if (request()->has('sort_by')) {
+            $attribute = $transformer::originalAttributes(request()->sort_by);
+
+            $collection = $collection->sortBy->{$attribute};
+
+        }
+        return $collection;
+    }
+
+    protected function searchData(Collection $collection, $transformer){
+        if (request()->has('search')) {
             $attribute = $transformer::originalAttributes(request()->sort_by);
 
             $collection = $collection->sortBy->{$attribute};
