@@ -18,6 +18,7 @@ class PlantObserver
         $data = [
             'plant_id' => $plant->id,
             'type' => 'planted',
+            'description' => ''
         ];
 
         $care = Care::create($data);
