@@ -18,7 +18,6 @@ class PlantObserver
         $data = [
             'plant_id' => $plant->id,
             'type' => 'planted',
-            'description' => 'Dia de Plantacion'
         ];
 
         $care = Care::create($data);
