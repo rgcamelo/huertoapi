@@ -38,15 +38,11 @@ class SeedController extends ApiController
     {
         $rules = [
             'name' => 'required',
-            'image' => 'image'
+            'image' => 'required'
         ];
 
         $this->validate($request,$rules);
         $data = $request->all();
-
-        if (!empty($data['image'])) {
-            $data['image'] = $request->image->store('');
-        }
 
         $seed = Seed::create($data);
         return $this->showOne($seed,201);
@@ -78,11 +74,6 @@ class SeedController extends ApiController
             'status',
         ]));
 
-        if ($request->hasFile('image')){
-            Storage::delete($seed->image);
-            $seed->image = $request->image->store('');
-        }
-
         if ($seed->isClean()) {
             return $this->errorResponse('Debe especificar al menor un valor diferente para actualizar',422);
         }
@@ -101,7 +92,6 @@ class SeedController extends ApiController
     public function destroy(Seed $seed)
     {
         $garden['status'] = Seed::SEED_NO_DISPONIBLE;
-        Storage::delete($seed->image);
         $seed->delete();
 
         return $this->showOne($seed);
