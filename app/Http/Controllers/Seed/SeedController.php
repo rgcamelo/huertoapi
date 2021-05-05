@@ -72,6 +72,7 @@ class SeedController extends ApiController
         $seed->fill($request->only([
             'name',
             'status',
+            'image',
         ]));
 
         if ($seed->isClean()) {
