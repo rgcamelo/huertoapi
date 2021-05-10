@@ -119,11 +119,9 @@ class BedSeedPlantController extends ApiController
 
         $this->validate($request,$rules);
 
-        $this->verifiedSeedBed($bed,$seed,$plant);
+        //$this->verifiedSeedBed($bed,$seed,$plant);
 
-        if ($request->status == 'transplantada') {
-
-            dd('Aqui');
+        if ($request->status === 'transplantada') {
             $transp = $plant->replicate();
 
             $transp->fill($request->only([
