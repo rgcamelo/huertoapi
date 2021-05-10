@@ -20,6 +20,7 @@ class Plant extends Model
     const PLANT_STATUS_WATER = 'riego';
     const PLANT_STATUS_DISPONIBLE = 'disponible';
     const PLANT_STATUS_NO_DISPONIBLE = 'no disponible';
+    const PLANT_TRANSPLANTED = 'transplantada';
 
     protected $dates = ['deleted_at'];
 

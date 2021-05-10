@@ -114,23 +114,36 @@ class BedSeedPlantController extends ApiController
         }
 
         $rules = [
-            'status' => 'in:'.Plant::PLANT_STATUS_PLANTED.','.Plant::PLANT_STATUS_WATER.','.Plant::PLANT_STATUS_DESPLANTED.','.Plant::PLANT_STATUS_DISPONIBLE.','.Plant::PLANT_STATUS_NO_DISPONIBLE,
+            'status' => 'in:'.Plant::PLANT_STATUS_PLANTED.','.Plant::PLANT_STATUS_WATER.','.Plant::PLANT_STATUS_DESPLANTED.','.Plant::PLANT_STATUS_DISPONIBLE.','.Plant::PLANT_STATUS_NO_DISPONIBLE.','.Plant::PLANT_TRANSPLANTED,
         ];
 
         $this->validate($request,$rules);
 
         $this->verifiedSeedBed($bed,$seed,$plant);
 
-        $plant->fill($request->only([
-            'bed_id',
-            'status'
-        ]));
-
         if ($plant->isClean()) {
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
         }
 
-        $plant->save();
+
+        if ($request->status == 'transplantada') {
+
+            $transp = $plant->replicate();
+
+            $transp->fill($request->only([
+                'bed_id',
+                'status'
+            ]));
+
+            foreach($plant->cares as $care)
+            {
+                $transp->cares()->attach($care);
+            }
+
+            $transp->push();
+        }
+
+
 
         return $this->showOne($plant);
     }
