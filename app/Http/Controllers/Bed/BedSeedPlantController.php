@@ -123,6 +123,7 @@ class BedSeedPlantController extends ApiController
 
         if ($request->status == 'transplantada') {
 
+            dd('Aqui');
             $transp = $plant->replicate();
 
             $transp->fill($request->only([
