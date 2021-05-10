@@ -119,7 +119,7 @@ class BedSeedPlantController extends ApiController
 
         $this->validate($request,$rules);
 
-        //$this->verifiedSeedBed($bed,$seed,$plant);
+        $this->verifiedSeedBed($bed,$seed,$plant);
 
         if ($request->status === 'transplantada') {
             $transp = $plant->replicate();
@@ -129,10 +129,11 @@ class BedSeedPlantController extends ApiController
                 'status'
             ]));
 
-            foreach($plant->cares as $care)
-            {
-                $transp->cares()->attach($care);
-            }
+            // foreach($plant->cares as $care)
+            // {
+
+            //     $transp->cares()->attach($care);
+            // }
 
             $transp->push();
 
