@@ -121,11 +121,6 @@ class BedSeedPlantController extends ApiController
 
         $this->verifiedSeedBed($bed,$seed,$plant);
 
-        if ($plant->isClean()) {
-            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
-        }
-
-
         if ($request->status == 'transplantada') {
 
             $transp = $plant->replicate();
@@ -141,11 +136,28 @@ class BedSeedPlantController extends ApiController
             }
 
             $transp->push();
+
+            return $this->showOne($transp);
+
+        }else{
+
+            $plant->fill($request->only([
+                'bed_id',
+                'status'
+            ]));
+
+            if ($plant->isClean()) {
+                return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
+            }
+
+            $plant->save();
+
+            return $this->showOne($plant);
         }
 
 
 
-        return $this->showOne($plant);
+
     }
 
     /**
