@@ -122,10 +122,11 @@ class BedSeedPlantController extends ApiController
         $this->verifiedSeedBed($bed,$seed,$plant);
 
         if ($request->status === 'transplantada') {
-            $newplant = $this->store($request,$request->bed_id,$request->seed_id);
+            $bed -> Bed::find($request->bed_id);
+            $seed -> Seed::find($request->seed_id);
 
 
-
+            $newplant = $this->store($request,$bed,$seed);
             // foreach($plant->cares as $care)
             // {
 
