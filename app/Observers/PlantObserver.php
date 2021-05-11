@@ -15,13 +15,16 @@ class PlantObserver
      */
     public function created(Plant $plant)
     {
-        $data = [
-            'plant_id' => $plant->id,
-            'type' => 'planted',
-            'description' => ''
-        ];
+        if ($plant->status != Plant::PLANT_TRANSPLANTED) {
+            $data = [
+                'plant_id' => $plant->id,
+                'type' => 'planted',
+                'description' => ''
+            ];
 
-        $care = Care::create($data);
+            $care = Care::create($data);
+        }
+
     }
 
     /**

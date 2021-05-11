@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bed;
 use App\Models\Plant;
 use App\Models\Seed;
+use App\Models\Care;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -73,6 +74,45 @@ class BedSeedPlantController extends ApiController
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeR(Request $request,Bed $bed,Seed $seed)
+    {
+        if (!$bed->isDisponible()) {
+            return $this->errorResponse('La cama no esta disponible',409);
+        }
+
+        if (!$seed->isDisponible()){
+            return $this->errorResponse('Semilla no disponible',409);
+        }
+
+        $rules =[
+            'quantity' => 'required|integer|min:1'
+        ];
+
+        $this->validate($request,$rules);
+
+        return DB::transaction(function () use ($request,$bed,$seed) {
+            // if ($bed->type != Bed::TYPE_BED) {
+            //     $bed->status = Bed::BED_NO_DISPONIBLE;
+            //     $bed->save();
+            // }
+
+            $data = $request->all();
+            $data['name'] = $seed->name;
+            $data['bed_id'] = $bed->id;
+            $data['seed_id'] = $seed->id;
+
+            $plant = Plant::create($data);
+
+            return $plant;
+        });
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Bed  $bed
@@ -103,6 +143,8 @@ class BedSeedPlantController extends ApiController
      */
     public function update(Request $request, Bed $bed, Seed $seed, Plant $plant)
     {
+
+
         if($request->bed_id){
             if($plant->bed_id == $request->bed_id){
                 return $this->errorResponse('La cama es la misma',409);
@@ -121,19 +163,35 @@ class BedSeedPlantController extends ApiController
 
         $this->verifiedSeedBed($bed,$seed,$plant);
 
+
+
         if ($request->status === 'transplantada') {
-            $bed -> Bed::find($request->bed_id);
-            $seed -> Seed::find($request->seed_id);
 
 
-            $newplant = $this->store($request,$bed,$seed);
-            // foreach($plant->cares as $care)
-            // {
+            $b = Bed::find($request->bed_id);
+            $s = Seed::find($plant->seed_id);
 
-            //     $transp->cares()->attach($care);
-            // }
+            $newplant = $this->storeR($request,$b,$s);
 
-            // $transp->push();
+            foreach($plant->cares as $care)
+            {
+                //dd($care->type);
+                $data = [
+                    'plant_id' => $newplant->id,
+                    'type' => $care->type,
+                    'description' => $care->description,
+                ];
+
+                $c = Care::create($data);
+            }
+
+            $data = [
+                'plant_id' => $newplant->id,
+                'type' => 'transplanted',
+                'description' => 'Se ha realizado transplante'
+            ];
+
+            $care = Care::create($data);
 
             return $newplant;
 
