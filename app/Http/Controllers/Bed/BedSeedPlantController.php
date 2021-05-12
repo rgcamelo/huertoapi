@@ -165,7 +165,7 @@ class BedSeedPlantController extends ApiController
 
 
 
-        if ($request->status === 'transplantada') {
+        if ($request->status === 'trasplantada') {
 
 
             $b = Bed::find($request->bed_id);
