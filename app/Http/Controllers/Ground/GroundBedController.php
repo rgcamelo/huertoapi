@@ -54,15 +54,14 @@ class GroundBedController extends ApiController
 
         return DB::transaction(function () use($request,$ground) {
 
-
-            $nx = number_format($request->x, 2, ',', '');
-            $ny = number_format($request->y, 2, ',', '');
+            // $nx = number_format($request->x, 2, ',', '');
+            // $ny = number_format($request->y, 2, ',', '');
+            // $data['x'] = $nx;
+            // $data['y'] = $ny;
 
             $data = $request->all();
 
             $data['status'] = Bed::BED_DISPONIBLE;
-            $data['x'] = $nx;
-            $data['y'] = $ny;
             $data['ground_id'] = $ground->id;
 
             $bed = Bed::create($data);
