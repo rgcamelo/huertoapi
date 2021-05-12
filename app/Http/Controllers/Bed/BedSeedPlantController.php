@@ -199,7 +199,8 @@ class BedSeedPlantController extends ApiController
 
             $plant->fill($request->only([
                 'bed_id',
-                'status'
+                'status',
+                'quantity',
             ]));
 
             if ($plant->isClean()) {
