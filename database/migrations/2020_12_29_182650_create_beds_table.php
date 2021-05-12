@@ -18,8 +18,8 @@ class CreateBedsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('number')->unsigned();
-            $table->integer('x')->unsigned();
-            $table->integer('y')->unsigned();
+            $table->decimal('x', 8, 2)->unsigned();
+            $table->decimal('y', 8, 2)->unsigned();
             $table->string('status')->default(Bed::BED_DISPONIBLE);
             $table->string('type');
             $table->timestamps();

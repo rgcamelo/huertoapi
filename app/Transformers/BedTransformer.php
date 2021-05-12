@@ -35,8 +35,8 @@ class BedTransformer extends TransformerAbstract
         return [
             'id' => (int)$bed->id,
             'number' => (int)$bed->number,
-            'x' => (int)$bed->x,
-            'y' => (int)$bed->y,
+            'x' => (double)$bed->x,
+            'y' => (double)$bed->y,
             'name' => (string)$bed->name,
             'status' => (string)$bed->status,
             'type' => (string)$bed->type,
