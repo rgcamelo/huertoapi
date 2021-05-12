@@ -146,9 +146,9 @@ class BedSeedPlantController extends ApiController
 
 
         if($request->bed_id){
-            if($plant->bed_id == $request->bed_id){
-                return $this->errorResponse('La cama es la misma',409);
-            }
+            // if($plant->bed_id == $request->bed_id){
+            //     return $this->errorResponse('La cama es la misma',409);
+            // }
 
             if (!Bed::find($request->bed_id)->isDisponible()) {
                 return $this->errorResponse('La cama no esta disponible',409);
