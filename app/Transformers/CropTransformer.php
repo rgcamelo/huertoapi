@@ -34,7 +34,7 @@ class CropTransformer extends TransformerAbstract
     {
         return [
             'id' => (int)$crop->id,
-            'quantity' => (int)$crop->quantity,
+            'quantity' => (double)$crop->quantity,
             'plant' => (int)$crop->plant_id,
             'created_at' => (string)$crop->created_at,
             'updated_at' => (string)$crop->updated_at,

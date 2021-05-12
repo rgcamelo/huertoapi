@@ -32,7 +32,7 @@ class PlantCropController extends ApiController
     public function store(Request $request, Plant $plant){
 
         $rules =[
-            'quantity' => 'required|integer|min:1'
+            'quantity' => 'required'
         ];
 
         $this->validate($request,$rules);
@@ -48,7 +48,7 @@ class PlantCropController extends ApiController
 
     public function update(Request $request, Plant $plant, Crop $crop){
         $rules =[
-            'quantity' => 'integer|min:1'
+            'quantity'
         ];
 
         $this->verifiedPlant($plant,$crop);

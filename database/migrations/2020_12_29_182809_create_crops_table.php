@@ -15,7 +15,7 @@ class CreateCropsTable extends Migration
     {
         Schema::create('crops', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity')->unsigned();
+            $table->decimal('quantity', 8, 2)->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
