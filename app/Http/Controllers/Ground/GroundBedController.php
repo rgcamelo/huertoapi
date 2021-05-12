@@ -57,7 +57,7 @@ class GroundBedController extends ApiController
             // $nx = number_format($request->x, 2, '.', '');
             // $ny = number_format($request->y, 2, '.', '');
 
-             print_r($request->x);
+             echo $request->x;
 
 
             $data = $request->all();
