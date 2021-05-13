@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Bed;
 use App\Models\Ground;
 use App\Models\Plant;
+use App\Models\Seed;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\BedObserver;
@@ -38,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
         Bed::observe(BedObserver::class);
         Ground::observe(GroundObserver::class);
         Plant::observe(PlantObserver::class);
+        Seed::observe(SeedObserver::class);
     }
 }
