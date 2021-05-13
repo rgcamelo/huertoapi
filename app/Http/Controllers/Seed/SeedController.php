@@ -99,7 +99,7 @@ class SeedController extends ApiController
             $plant->status == 'desplantada';
             $plant->save();
         }
-        $garden['status'] = Seed::SEED_NO_DISPONIBLE;
+        $seed['status'] = Seed::SEED_NO_DISPONIBLE;
         //$seed->delete();
 
         return $this->showOne($seed);
