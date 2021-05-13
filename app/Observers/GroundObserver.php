@@ -69,7 +69,7 @@ class GroundObserver
      */
     public function deleted(Ground $ground)
     {
-        //
+        $ground->beds()->delete();
     }
 
     /**
