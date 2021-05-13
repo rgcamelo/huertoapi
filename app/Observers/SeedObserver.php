@@ -36,7 +36,10 @@ class SeedObserver
      */
     public function deleted(Seed $seed)
     {
-        $seed->plants()->delete();
+        foreach($seed->plants as $plant)
+            {
+                $plant->delete();
+            }
     }
 
     /**
