@@ -37,10 +37,10 @@ class SeedObserver
      */
     public function deleted(Seed $seed)
     {
-        $bsdestroy = new BedSeedPlantController();
         foreach($seed->plants as $plant)
             {
-                $bsdestroy->destroy($plant->bed_id,$plant->seed_id,$plant);
+                $plant->status == 'desplantada';
+                $plant->save();
             }
     }
 
