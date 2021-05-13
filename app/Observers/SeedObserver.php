@@ -37,11 +37,7 @@ class SeedObserver
      */
     public function deleted(Seed $seed)
     {
-        foreach($seed->plants as $plant)
-            {
-                $plant->status == 'desplantada';
-                $plant->save();
-            }
+
     }
 
     /**

@@ -92,6 +92,11 @@ class SeedController extends ApiController
      */
     public function destroy(Seed $seed)
     {
+        foreach($seed->plants as $plant)
+        {
+            $plant->status == 'desplantada';
+            $plant->save();
+        }
         $garden['status'] = Seed::SEED_NO_DISPONIBLE;
         $seed->delete();
 
