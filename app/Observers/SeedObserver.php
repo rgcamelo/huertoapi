@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\Bed\BedSeedPlantController;
 use App\Models\Seed;
 
 class SeedObserver
@@ -36,9 +37,10 @@ class SeedObserver
      */
     public function deleted(Seed $seed)
     {
+        $bsdestroy = new BedSeedPlantController();
         foreach($seed->plants as $plant)
             {
-                $plant->delete();
+                $bsdestroy->destroy($plant->bed_id,$plant->seed_id,$plant);
             }
     }
 
