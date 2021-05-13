@@ -101,7 +101,7 @@ class SeedController extends ApiController
         }
         $seed['status'] = Seed::SEED_NO_DISPONIBLE;
         $seed->save();
-        //$seed->delete();
+        $seed->delete();
 
         return $this->showOne($seed);
     }
