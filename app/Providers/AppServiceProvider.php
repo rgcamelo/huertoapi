@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Observers\BedObserver;
 use App\Observers\GroundObserver;
 use App\Observers\PlantObserver;
+use App\Observers\SeedObserver;
 use Illuminate\Contracts\Routing\UrlGenerator;
 
 class AppServiceProvider extends ServiceProvider
