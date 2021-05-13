@@ -96,10 +96,11 @@ class SeedController extends ApiController
         {
             // $b = Bed::find($plant->bed_id);
             // $s = Seed::find($plant->seed_id);
-            $plant->status == 'desplantada';
+            $plant->status = 'desplantada';
             $plant->save();
         }
         $seed['status'] = Seed::SEED_NO_DISPONIBLE;
+        $seed->save();
         //$seed->delete();
 
         return $this->showOne($seed);
