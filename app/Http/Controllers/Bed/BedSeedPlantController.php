@@ -102,7 +102,6 @@ class BedSeedPlantController extends ApiController
             // }
 
             $data = $request->all();
-            $data['name'] = $seed->name;
             $data['bed_id'] = $bed->id;
             $data['seed_id'] = $seed->id;
 
