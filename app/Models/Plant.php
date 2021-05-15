@@ -27,7 +27,6 @@ class Plant extends Model
     public $transformer = PlantTransformer::class;
 
 	protected $fillable = [
-    	'name',
         'seed_id',
         'bed_id',
     	'status',

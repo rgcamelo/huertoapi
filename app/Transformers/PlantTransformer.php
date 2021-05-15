@@ -39,7 +39,7 @@ class PlantTransformer extends TransformerAbstract
 
         return [
             'id' => (int)$plant->id,
-            'name' => (string)$plant->name,
+            'name' => (string)$seed->name,
             'status' => (string)$plant->status,
             'quantity' => (int)$plant->quantity,
             'seed_id' => (int)$plant->seed_id,
