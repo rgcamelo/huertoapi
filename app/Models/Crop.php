@@ -18,6 +18,7 @@ class Crop extends Model
 
 	protected $fillable = [
     	'plant_id',
+        'care_id',
     	'quantity'
     ];
 

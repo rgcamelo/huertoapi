@@ -32,7 +32,8 @@ class PlantCropController extends ApiController
     public function store(Request $request, Plant $plant){
 
         $rules =[
-            'quantity' => 'required'
+            'quantity' => 'required',
+            'care_id' => 'required'
         ];
 
         $this->validate($request,$rules);

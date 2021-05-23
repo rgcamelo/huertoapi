@@ -36,6 +36,7 @@ class CropTransformer extends TransformerAbstract
             'id' => (int)$crop->id,
             'quantity' => (double)$crop->quantity,
             'plant' => (int)$crop->plant_id,
+            'care' => (int)$crop->care_id,
             'created_at' => (string)$crop->created_at,
             'updated_at' => (string)$crop->updated_at,
             'deleted_at' => isset($crop->deleted_at) ? (string)$crop->deleted_at : null,
