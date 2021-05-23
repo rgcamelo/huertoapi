@@ -26,7 +26,6 @@ class PlantFactory extends Factory
         $bed = Bed::all()->random();
         $seed = Seed::all()->random();
         return [
-            'name' => $seed->name,
             'bed_id' => $bed->id,
             'seed_id' => $seed->id,
             'quantity' => $this->faker->numberBetween(0,15),

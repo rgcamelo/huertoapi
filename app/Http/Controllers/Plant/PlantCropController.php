@@ -33,7 +33,7 @@ class PlantCropController extends ApiController
 
         $rules =[
             'quantity' => 'required',
-            'care_id' => 'required'
+            'care' => 'required',
         ];
 
         $this->validate($request,$rules);
