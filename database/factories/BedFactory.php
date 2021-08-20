@@ -29,7 +29,7 @@ class BedFactory extends Factory
             'number' => $this->faker->numberBetween(0,15),
             'x' => $this->faker->numberBetween(0,15),
             'y' => $this->faker->numberBetween(0,15),
-            'status' => $this->faker->randomElement([Bed::BED_DISPONIBLE,Bed::BED_NO_DISPONIBLE]),
+            'status' => $this->faker->randomElement([Bed::BED_DISPONIBLE]),
             'type' => $ground->type == 'module' ? $this->faker->randomElement([Bed::TYPE_FURROW,Bed::TYPE_TERRACE]) : Bed::TYPE_BED,
             'ground_id' => $ground->id,
         ];

@@ -23,7 +23,7 @@ class SeedFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'status' => $this->faker->randomElement([Seed::SEED_DISPONIBLE, Seed::SEED_NO_DISPONIBLE]),
+            'status' => $this->faker->randomElement([Seed::SEED_DISPONIBLE]),
             'image' => $this->faker->randomElement(['1.png','2.jpg']),
         ];
     }

@@ -24,8 +24,8 @@ class GroundFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'status' => $this->faker->randomElement([Ground::GROUND_DISPONIBLE,Ground::GROUND_NO_DISPONIBLE]),
-            'type' => $this->faker->randomElement([Ground::TYPE_MODULE,Ground::TYPE_SEEDBED]),
+            'status' => $this->faker->randomElement([Ground::GROUND_DISPONIBLE]),
+            'type' => $this->faker->randomElement([Ground::TYPE_MODULE]),
             'number_bed' => $this->faker->numberBetween(0,15),
             'number_furrow' => $this->faker->numberBetween(0,15),
             'number_terrace' => $this->faker->numberBetween(0,15),

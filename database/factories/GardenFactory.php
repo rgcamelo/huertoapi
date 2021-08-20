@@ -23,7 +23,7 @@ class GardenFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'status' => $this->faker->randomElement([Garden::GARDEN_DISPONIBLE,Garden::GARDEN_NO_DISPONIBLE]),
+            'status' => $this->faker->randomElement([Garden::GARDEN_DISPONIBLE]),
             'image' => $this->faker->randomElement(['1.png','2.jpg']),
         ];
     }
